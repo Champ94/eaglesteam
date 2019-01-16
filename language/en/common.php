@@ -19,6 +19,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
+    'NOTICE_BOARD'      => 'Notice Board',
 	'DEMO_PAGE'			=> 'Demo',
 	'DEMO_HELLO'		=> 'Hello %s!',
 	'DEMO_GOODBYE'		=> 'Goodbye %s!',
