@@ -15,18 +15,18 @@ namespace champ94\eaglesteam\acp;
  */
 class main_info
 {
-	public function module()
-	{
-		return array(
-			'filename'	=> '\champ94\eaglesteam\acp\main_module',
-			'title'		=> 'ACP_DEMO_TITLE',
-			'modes'		=> array(
-				'settings'	=> array(
-					'title'	=> 'ACP_DEMO',
-					'auth'	=> 'ext_champ94/eaglesteam && acl_a_board',
-					'cat'	=> array('ACP_DEMO_TITLE')
-				),
-			),
-		);
-	}
+    public function module()
+    {
+        return array(
+            'filename'  => '\champ94\eaglesteam\acp\main_module',
+            'title'     => 'ACP_EAGLES_TITLE',
+            'modes'     => array(
+                'settings'  => array(
+                    'title' => 'ACP_EAGLES',
+                    'auth'  => 'ext_champ94/eaglesteam && acl_a_board',
+                    'cat'   => array('ACP_EAGLES_TITLE'),
+                ),
+            ),
+        );
+    }
 }

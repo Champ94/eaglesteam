@@ -1,3 +1,0 @@
-champ94_eaglesteam_controller:
-    path: /demo/{name}
-    defaults: { _controller: champ94.eaglesteam.controller:handle }

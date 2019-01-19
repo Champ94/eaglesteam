@@ -19,18 +19,12 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-    'NOTICE_BOARD'      => 'Notice Board',
-	'NEWS_BOARD'        => 'News Board',
-	'EAGLES_PROJECTS'   => 'Eagles Projects',
-	'DEMO_PAGE'			=> 'Demo',
-	'DEMO_HELLO'		=> 'Hello %s!',
-	'DEMO_GOODBYE'		=> 'Goodbye %s!',
+    'NOTICE_BOARD'              => 'Notice Board',
+	'NEWS_BOARD'                => 'News Board',
+	'EAGLES_PROJECTS'           => 'Eagles Projects',
 
-	'ACP_DEMO'					=> 'Settings',
-	'ACP_DEMO_GOODBYE'			=> 'Should say goodbye?',
-	'ACP_DEMO_SETTING_SAVED'	=> 'Settings have been saved successfully!',
-
-	'ACME_DEMO_NOTIFICATION'	=> 'Acme demo notification',
-
-	'VIEWING_ACME_DEMO'			=> 'Viewing Acme Demo',
+    'ACP_EAGLES_TITLE'          => 'Eagles Team Module',
+    'ACP_EAGLES'                => 'Settings',
+    'ACP_EAGLES_SETTING_SAVED'  => 'Settings have been saved successfully!',
+    'ACP_EAGLES_OPTION'         => 'Choose option',
 ));

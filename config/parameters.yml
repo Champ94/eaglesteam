@@ -1,2 +1,0 @@
-parameters:
-    champ94.eaglesteam.tables.demo_table: '%core.table_prefix%demo_table'

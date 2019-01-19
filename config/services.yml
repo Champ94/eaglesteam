@@ -1,36 +1,5 @@
-imports:
-    - { resource: parameters.yml }
-
 services:
-    champ94.eaglesteam.controller:
-        class: champ94\eaglesteam\controller\main
-        arguments:
-            - '@config'
-            - '@controller.helper'
-            - '@template'
-            - '@user'
-
-    champ94.eaglesteam.service:
-        class: champ94\eaglesteam\service
-        arguments:
-            - '@user'
-            - '%champ94.eaglesteam.tables.demo_table%'
-
     champ94.eaglesteam.listener:
         class: champ94\eaglesteam\event\main_listener
-        arguments:
-            - '@controller.helper'
-            - '@template'
-            - '@user'
-            - '%core.php_ext%'
         tags:
             - { name: event.listener }
-
-    champ94.eaglesteam.cron.task.demo:
-        class: champ94\eaglesteam\cron\task\demo
-        arguments:
-            - '@config'
-        calls:
-            - [set_name, [cron.task.demo]]
-        tags:
-            - { name: cron.task }
