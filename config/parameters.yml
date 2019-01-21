@@ -1,0 +1,3 @@
+parameters:
+    champ94.eaglesteam.tables.et_series: '%core.table_prefix%et_series'
+    champ94.eaglesteam.tables.et_chapters: '%core.table_prefix%et_chapters'

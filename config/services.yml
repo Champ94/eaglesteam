@@ -1,5 +1,15 @@
+imports:
+    - { resource: parameters.yml }
+
 services:
     champ94.eaglesteam.listener:
         class: champ94\eaglesteam\event\main_listener
         tags:
             - { name: event.listener }
+
+    champ94.eaglesteam.service:
+        class: champ94\eaglesteam\service
+        arguments:
+            - '@dbal.conn'
+            - '%champ94.eaglesteam.tables.et_series%'
+            - '%champ94.eaglesteam.tables.et_chapters%'
