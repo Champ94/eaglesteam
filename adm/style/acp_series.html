@@ -2,8 +2,51 @@
 
 <h1>{L_ACP_SERIES_TITLE}</h1>
 
-<form id="acp_board" method="post" action="{U_ACTION}">
+<form method="post" action="{{ U_ACTION }}">
+    <fieldset>
+        <legend>Add new series</legend>
+        <dl>
+            <dt><label for="series_name">Series name</label></dt>
+            <dd><input class="text medium" type="text" id="series_name" name="series_name"></dd>
+        </dl>
+        <dl>
+            <dt><label for="series_img">Series image</label></dt>
+            <dd><input class="text medium" type="text" id="series_img" name="series_img"></dd>
+        </dl>
+        <dl>
+            <dt><label for="series_link">Series link</label></dt>
+            <dd><input class="text medium" type="text" id="series_link" name="series_link"></dd>
+        </dl>
 
+        <p class="quick">
+            <input type="submit" name="submit" value="{{ lang('SUBMIT') }}" class="button1">
+            {{ S_FORM_TOKEN }}
+        </p>
+    </fieldset>
 </form>
+
+<table class="table1 zebra-table">
+    <caption>Series</caption>
+    <thead>
+    <tr>
+        <th>Series name</th>
+        <th>Series image</th>
+        <th>Series link</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for series in loops.series %}
+    <tr class="{% if series.S_ROW_COUNT is even %}bg1{% else %}bg2{% endif %}">
+        <td>{{ series.SERIES_NAME }}</td>
+        <td>{{ series.SERIES_IMG }}</td>
+        <td>{{ series.SERIES_LINK }}</td>
+    </tr>
+    {% else %}
+    <tr class="big-column">
+        <td colspan="3" class="bg1" style="text-align: center">No series in database</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
 <!-- INCLUDE overall_footer.html -->

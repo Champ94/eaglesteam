@@ -65,6 +65,14 @@ class main_module
      */
     private function mode_settings()
     {
+
+    }
+
+    /**
+     * Controller for the series mode
+     */
+    private function mode_series()
+    {
         add_form_key(self::FORM_KEY);
 
         $series = $this->service->get_series();
@@ -78,22 +86,22 @@ class main_module
             ));
         }
 
-        $this->template->assign_vars(array(
-            'U_ACTION'  => $this->u_action,
-        ));
-    }
-
-    /**
-     * Controller for the series mode
-     */
-    private function mode_series()
-    {
-        add_form_key(self::FORM_KEY);
-
         if ($this->request->is_set_post('submit'))
         {
             $this->security_check();
+
+            $series_name = $this->request->variable('series_name', '', true);
+            $series_img = $this->request->variable('series_img', '', true);
+            $series_link = $this->request->variable('series_link', '', true);
+
+            $this->service->add_new_series($series_name, $series_img, $series_link);
+
+            trigger_error($this->user->lang('CONFIG_UPDATED') . adm_back_link($this->u_action), E_USER_NOTICE);
         }
+
+        $this->template->assign_vars(array(
+            'U_ACTION'  => $this->u_action,
+        ));
     }
 
     /**

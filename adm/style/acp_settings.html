@@ -3,30 +3,4 @@
 <h1>{L_ACP_SETTINGS_TITLE}</h1>
 <p>Description</p>
 
-<form method="post" action="{{ U_ACTION }}">
-    <table class="table1 zebra-table">
-        <caption>Series</caption>
-        <thead>
-            <tr>
-                <th>Series name</th>
-                <th>Series image</th>
-                <th>Series link</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for series in loops.series %}
-            <tr class="{% if series.S_ROW_COUNT is even %}bg1{% else %}bg2{% endif %}">
-                <td>{{ series.SERIES_NAME }}</td>
-                <td>{{ series.SERIES_IMG }}</td>
-                <td>{{ series.SERIES_LINK }}</td>
-            </tr>
-            {% else %}
-            <tr class="big-column">
-                <td colspan="3" class="bg1" style="text-align: center">No series in database</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</form>
-
 <!-- INCLUDE overall_footer.html -->
