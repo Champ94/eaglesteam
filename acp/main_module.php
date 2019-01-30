@@ -141,7 +141,54 @@ class main_module
      */
     private function mode_chapters()
     {
+        add_form_key(self::FORM_KEY);
 
+        $series = $this->service->get_series();
+        foreach ($series as $s)
+        {
+            $this->template->assign_block_vars('series', array(
+                'SERIES_ID'     => $s['series_id'],
+                'SERIES_NAME'   => $s['series_name'],
+            ));
+        }
+
+        $chapters = $this->service->get_chapters();
+        foreach ($chapters as $c)
+        {
+            $series_name = 'Not found';
+            foreach ($series as $s)
+            {
+                if ($s['series_id'] == $c['series_id'])
+                {
+                    $series_name = $s['series_name'];
+                    break;
+                }
+            }
+
+            $this->template->assign_block_vars('chapters', array(
+                'CHAPTER_SERIES'    => $series_name,
+                'CHAPTER_NAME'      => $c['chapter_name'],
+                'CHAPTER_LINK'      => $c['chapter_link'],
+            ));
+        }
+
+        if ($this->request->is_set_post('submit'))
+        {
+            $this->security_check();
+
+            $chapter_name = $this->request->variable('chapter_name', '', true);
+            $chapter_link = $this->request->variable('chapter_link', '', true);
+            $chapter_visibility = $this->request->variable('chapter_visibility', 0);
+            $series_id = $this->request->variable('chapter_series_id', '', true);
+
+            $this->service->add_new_chapter($chapter_name, $chapter_link, $chapter_visibility, $series_id);
+
+            trigger_error($this->user->lang('CONFIG_UPDATED') . adm_back_link($this->u_action), E_USER_NOTICE);
+        }
+
+        $this->template->assign_vars(array(
+            'U_ACTION'  => $this->u_action,
+        ));
     }
 
     private function security_check() {

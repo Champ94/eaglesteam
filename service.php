@@ -21,20 +21,28 @@ class service
     /** @var string */
     protected $et_chapters_table;
 
+    /** @var string */
+    protected $et_board_images_table;
+
     /**
      * Constructor
      *
      * @param \phpbb\db\driver\factory $db
      * @param string $et_series_table
      * @param string $et_chapters_table
+     * @param string $et_board_images_table
      */
-    public function __construct(\phpbb\db\driver\factory $db, $et_series_table, $et_chapters_table)
+    public function __construct(\phpbb\db\driver\factory $db, $et_series_table, $et_chapters_table, $et_board_images_table)
     {
         $this->db = $db;
         $this->et_series_table = $et_series_table;
         $this->et_chapters_table = $et_chapters_table;
+        $this->et_board_images_table = $et_board_images_table;
     }
 
+    /**
+     * @return array containing all the series
+     */
     public function get_series() {
         $query = 'SELECT * FROM ' . $this->et_series_table;
 
@@ -68,6 +76,48 @@ class service
 
         $query = 'INSERT INTO '
             . $this->et_series_table . ' '
+            . $this->db->sql_build_array('INSERT', $sql_parameters);
+
+        $this->db->sql_query($query);
+    }
+
+    /**
+     * @return array containing latest 10 chapters
+     */
+    public function get_chapters() {
+        $query = 'SELECT * FROM ' . $this->et_chapters_table;
+
+        $result = $this->db->sql_query_limit($query, 10, 0);
+        $output = array();
+
+        while ($row = $this->db->sql_fetchrow($result))
+        {
+            $output[] = $row;
+        }
+
+        $this->db->sql_freeresult($result);
+
+        return $output;
+    }
+
+    /**
+     * Insert new chapter into database
+     *
+     * @param string $name chapter name or number
+     * @param string $link chapter link
+     * @param bool $visibility tells if chapter must be visible in news board
+     * @param int $series_id chapter's series id
+     */
+    public function add_new_chapter($name, $link, $visibility, $series_id) {
+        $sql_parameters = array(
+            'chapter_name'      => $name,
+            'chapter_link'      => $link,
+            'chapter_visible'   => $visibility,
+            'series_id'         => $series_id,
+        );
+
+        $query = 'INSERT INTO '
+            . $this->et_chapters_table . ' '
             . $this->db->sql_build_array('INSERT', $sql_parameters);
 
         $this->db->sql_query($query);

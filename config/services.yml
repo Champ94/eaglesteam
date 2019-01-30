@@ -13,3 +13,4 @@ services:
             - '@dbal.conn'
             - '%champ94.eaglesteam.tables.et_series%'
             - '%champ94.eaglesteam.tables.et_chapters%'
+            - '%champ94.eaglesteam.tables.et_board_images%'
