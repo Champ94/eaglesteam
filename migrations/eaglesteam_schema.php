@@ -28,7 +28,7 @@ class eaglesteam_schema extends \phpbb\db\migration\migration
     {
         return array(
             'add_tables'    => array(
-                $this->table_prefix . 'et_series'   => array(
+                $this->table_prefix . 'et_series'       => array(
                     'COLUMNS'       => array(
                         'series_id'         => array('UINT', null, 'auto_increment'),
                         'series_name'       => array('VCHAR:50', ''),
@@ -37,7 +37,7 @@ class eaglesteam_schema extends \phpbb\db\migration\migration
                     ),
                     'PRIMARY_KEY'   => 'series_id',
                 ),
-                $this->table_prefix . 'et_chapter'   => array(
+                $this->table_prefix . 'et_chapter'      => array(
                     'COLUMNS'   => array(
                         'chapter_id'        => array('UINT', null, 'auto_increment'),
                         'chapter_name'      => array('VCHAR:50', ''),
@@ -47,6 +47,19 @@ class eaglesteam_schema extends \phpbb\db\migration\migration
                     ),
                     'PRIMARY_KEY'   => 'chapter_id',
                 ),
+                $this->table_prefix . 'et_board_images' => array(
+                    'COLUMNS'   => array(
+                        'board_images_id'   => array('UINT', null, 'auto_increment'),
+                        'banner_1'          => array('VCHAR:100', ''),
+                        'banner_2'          => array('VCHAR:100', ''),
+                        'social_1'          => array('VCHAR:100', ''),
+                        'social_2'          => array('VCHAR:100', ''),
+                        'social_3'          => array('VCHAR:100', ''),
+                        'config_images'     => array('VCHAR:20', ''),
+                        'active_images'     => array('BOOL', 1),
+                    ),
+                    'PRIMARY_KEY'   => 'et_board_images',
+                ),
             ),
         );
     }
@@ -55,6 +68,7 @@ class eaglesteam_schema extends \phpbb\db\migration\migration
     {
         return array(
             'drop_tables'   => array(
+                $this->table_prefix . 'et_board_images',
                 $this->table_prefix . 'et_chapter',
                 $this->table_prefix . 'et_series',
             ),

@@ -9,7 +9,6 @@
  */
 
 namespace champ94\eaglesteam\acp;
-
 /**
  * Eagles Team Extension ACP module.
  */
@@ -21,42 +20,47 @@ class main_module
     public $page_title;
     public $u_action;
 
+    protected $phpbb_container;
     protected $user;
     protected $request;
+    protected $config;
     protected $template;
-    protected $phpbb_container;
 
     protected $service;
 
     public function main($id, $mode)
     {
-        global $user, $request, $template, $phpbb_container;
+        global $phpbb_container, $user, $request, $config, $template;
 
+        $this->phpbb_container = $phpbb_container;
         $this->user = $user;
         $this->request = $request;
+        $this->config = $config;
         $this->template = $template;
-        $this->phpbb_container = $phpbb_container;
 
-        $this->service = $this->phpbb_container->get('champ94.eaglesteam.service');
+        try {
+            $this->service = $this->phpbb_container->get('champ94.eaglesteam.service');
+        } catch (\Exception $e) {
+            error_log('Could not find service for eaglesteam extension');
+        }
 
         switch ($mode) {
             case 'settings':
             default:
                 $this->tpl_name = 'acp_settings';
-                $this->page_title = $user->lang('ACP_EAGLES_TEAM_SETTINGS');
+                $this->page_title = $this->user->lang('ACP_EAGLES_TEAM_SETTINGS');
                 $this->mode_settings();
                 break;
             case 'series':
                 $this->tpl_name = 'acp_series';
-                $this->page_title = $user->lang('ACP_EAGLES_TEAM_SERIES');
+                $this->page_title = $this->user->lang('ACP_EAGLES_TEAM_SERIES');
                 $this->mode_series();
                 break;
             case 'chapters':
                 $this->tpl_name = 'acp_chapters';
-                $this->page_title = $user->lang('ACP_EAGLES_TEAM_CHAPTERS');
+                $this->page_title = $this->user->lang('ACP_EAGLES_TEAM_CHAPTERS');
                 $this->mode_chapters();
                 break;
-
         }
     }
 
@@ -65,7 +69,35 @@ class main_module
      */
     private function mode_settings()
     {
+        add_form_key(self::FORM_KEY);
 
+        if ($this->request->is_set_post('submit_flags')) {
+            $this->security_check();
+
+            $this->config->set('champ94_eaglesteam_show_board', $this->request->variable('champ94_eaglesteam_show_board', 0));
+            trigger_error($this->user->lang('CONFIG_UPDATED') . adm_back_link($this->u_action));
+        }
+
+        if ($this->request->is_set_post('submit_images')) {
+            $this->security_check();
+
+            $banner_1 = $this->request->variable('banner_1', '', true);
+            $banner_2 = $this->request->variable('banner_2', '', true);
+            $this->service->update_board_banner($banner_1, $banner_2);
+
+            $social_1 = $this->request->variable('social_1', '', true);
+            $social_2 = $this->request->variable('social_2', '', true);
+            $social_3 = $this->request->variable('social_3', '', true);
+            $this->service->update_board_social($social_1, $social_2, $social_3);
+
+            trigger_error($this->user->lang('CONFIG_UPDATED') . adm_back_link($this->u_action), E_USER_NOTICE);
+        }
+
+        $this->template->assign_vars(array(
+            'CHAMP94_EAGLESTEAM_SHOW_BOARD' => $this->config['champ94_eaglesteam_show_board'],
+            'U_ACTION_FLAGS'                => $this->u_action,
+            'U_ACTION_IMGAGES'              => $this->u_action,
+        ));
     }
 
     /**
@@ -118,35 +150,4 @@ class main_module
             trigger_error('FORM_INVALID', E_USER_WARNING);
         }
     }
-/*
-    public function main($id, $mode)
-    {
-        global $config, $request, $template, $user;
-
-        $user->add_lang_ext('champ94/eaglesteam', 'common');
-        $this->tpl_name = 'acp_eagles_body';
-        $this->page_title = $user->lang('ACP_EAGLES_TITLE');
-
-        /**
-         * For security purposes
-         * @see https://area51.phpbb.com/docs/dev/3.2.x/extensions/tutorial_modules.html
-         *//*
-        add_form_key('champ94_eaglesteam_settings');
-
-        if ($request->is_set_post('submit'))
-        {
-            if (!check_form_key('champ94_eaglesteam_settings'))
-            {
-                trigger_error('FORM_INVALID', E_USER_WARNING);
-            }
-            
-            $config->set('champ94_eaglesteam_option', $request->variable('champ94_eaglesteam_option', 0));
-            trigger_error($user->lang('ACP_EAGLES_SETTING_SAVED') . adm_back_link($this->u_action));
-        }
-
-        $template->assign_vars(array(
-            'U_ACTION'				    => $this->u_action,
-            'CHAMP94_EAGLESTEAM_OPTION' => $config['champ94_eaglesteam_option'],
-        ));
-    }*/
 }

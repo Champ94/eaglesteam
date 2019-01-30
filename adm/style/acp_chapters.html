@@ -1,9 +1,10 @@
-<!-- INCLUDE overall_header.html -->
+{% INCLUDE 'overall_header.html' %}
 
-<h1>{L_ACP_CHAPTERS_TITLE}</h1>
+<h1>{{ lang('ACP_CHAPTERS_TITLE') }}</h1>
+<p>{{ lang('ACP_CHAPTERS_DESCRIPTION') }}</p>
 
-<form id="acp_board" method="post" action="{U_ACTION}">
+<form method="post" action="{U_ACTION}">
 
 </form>
 
-<!-- INCLUDE overall_footer.html -->
+{% INCLUDE 'overall_footer.html' %}

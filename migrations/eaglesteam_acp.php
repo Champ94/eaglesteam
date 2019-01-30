@@ -20,6 +20,10 @@ class eaglesteam_acp extends \phpbb\db\migration\migration
     public function update_data()
     {
         return array(
+            array('config.add', array(
+                'champ94_eaglesteam_show_board',
+                1
+            )),
             array('module.add', array(
                 'acp',
                 'ACP_CAT_DOT_MODS',

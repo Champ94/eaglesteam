@@ -72,4 +72,21 @@ class service
 
         $this->db->sql_query($query);
     }
+
+    /**
+     * @param $banner_1
+     * @param $banner_2
+     */
+    public function update_board_banner($banner_1, $banner_2) {
+
+    }
+
+    /**
+     * @param $social_1
+     * @param $social_2
+     * @param $social_3
+     */
+    public function update_board_social($social_1, $social_2, $social_3) {
+
+    }
 }
