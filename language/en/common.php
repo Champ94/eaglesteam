@@ -19,12 +19,24 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
+    // FRONT END
     'NOTICE_BOARD'              => 'Notice Board',
 	'NEWS_BOARD'                => 'News Board',
 	'EAGLES_PROJECTS'           => 'Eagles Projects',
 
-    'ACP_EAGLES_TITLE'          => 'Eagles Team Module',
-    'ACP_EAGLES'                => 'Settings',
-    'ACP_EAGLES_SETTING_SAVED'  => 'Settings have been saved successfully!',
-    'ACP_EAGLES_OPTION'         => 'Choose option',
+    // ACP
+    'EAGLES_TEAM'               => 'Eagles Team Module',
+    'ADM_EAGLES_TEAM'           => 'Eagles Team Module',
+
+    // ACP settings module
+    'ADM_EAGLES_TEAM_SETTINGS'  => 'Settings',
+    'ADM_SETTINGS_TITLE'        => 'Settings',
+
+    // ACP series module
+    'ADM_EAGLES_TEAM_SERIES'    => 'Series',
+    'ADM_SERIES_TITLE'          => 'Series',
+
+    // ACP chapters module
+    'ADM_EAGLES_TEAM_CHAPTERS'  => 'Chapters',
+    'ADM_CHAPTERS_TITLE'        => 'Chapters',
 ));

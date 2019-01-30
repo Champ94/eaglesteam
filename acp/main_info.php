@@ -19,12 +19,22 @@ class main_info
     {
         return array(
             'filename'  => '\champ94\eaglesteam\acp\main_module',
-            'title'     => 'ACP_EAGLES_TITLE',
+            'title'     => 'EAGLES_TEAM',
             'modes'     => array(
                 'settings'  => array(
-                    'title' => 'ACP_EAGLES',
+                    'title' => 'ADM_EAGLES_TEAM_SETTINGS',
                     'auth'  => 'ext_champ94/eaglesteam && acl_a_board',
-                    'cat'   => array('ACP_EAGLES_TITLE'),
+                    'cat'   => array('ADM_EAGLES_TEAM'),
+                ),
+                'series'    => array(
+                    'title' => 'ADM_EAGLES_TEAM_SERIES',
+                    'auth'  => 'ext_champ94/eaglesteam && acl_a_board',
+                    'cat'   => array('ADM_EAGLES_TEAM'),
+                ),
+                'chapters'  => array(
+                    'title' => 'ADM_EAGLES_TEAM_CHAPTERS',
+                    'auth'  => 'ext_champ94/eaglesteam && acl_a_board',
+                    'cat'   => array('ADM_EAGLES_TEAM'),
                 ),
             ),
         );

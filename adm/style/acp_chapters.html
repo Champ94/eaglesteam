@@ -1,0 +1,82 @@
+{% INCLUDE 'overall_header.html' %}
+
+<h1>{{ lang('ACP_CHAPTERS_TITLE') }}</h1>
+<p>{{ lang('ACP_CHAPTERS_DESCRIPTION') }}</p>
+
+<form method="post" action="{{ U_ACTION }}">
+    <fieldset>
+        <legend>{{ lang('ACP_CHAPTERS_NEW_CHAPTERS') }}</legend>
+        <dl>
+            <dt><label for="chapter_name">{{ lang('ACP_CHAPTER_CHAPTER_NAME') }}</label></dt>
+            <dd><input class="text medium" type="text" id="chapter_name" name="chapter_name"></dd>
+        </dl>
+        <dl>
+            <dt><label for="chapter_link">{{ lang('ACP_CHAPTER_CHAPTER_LINK') }}</label></dt>
+            <dd><input class="text medium" type="text" id="chapter_link" name="chapter_link"></dd>
+        </dl>
+        <dl>
+            <dt><label for="chapter_visibility">{{ lang('ACP_CHAPTER_CHAPTER_VISIBILITY') }}</label></dt>
+            <dd>
+                <input type="radio" class="radio" name="chapter_visibility" value="1" checked="checked"/> {{ lang('YES') }} &nbsp;
+                <input type="radio" class="radio" name="chapter_visibility" value="0"/> {{ lang('NO') }}
+            </dd>
+        </dl>
+        <dl>
+            <dt><label for="chapter_series_id">{{ lang('ACP_CHAPTER_SERIES_ID') }}</label></dt>
+            <dd><input class="text medium" type="text" id="chapter_series_id" name="chapter_series_id"></dd>
+        </dl>
+
+        <p class="quick">
+            <input type="submit" name="submit" value="{{ lang('SUBMIT') }}" class="button1">
+            {{ S_FORM_TOKEN }}
+        </p>
+    </fieldset>
+</form>
+
+<table class="table1 zebra-table">
+    <caption>{{ lang('ACP_CHAPTERS_SERIES_LIST') }}</caption>
+    <thead>
+    <tr>
+        <th>{{ lang('ACP_CHAPTERS_SERIES_ID') }}</th>
+        <th>{{ lang('ACP_CHAPTERS_SERIES_NAME') }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for series in loops.series %}
+    <tr class="{% if series.S_ROW_COUNT is even %}bg1{% else %}bg2{% endif %}">
+        <td>{{ series.SERIES_ID }}</td>
+        <td>{{ series.SERIES_NAME }}</td>
+    </tr>
+    {% else %}
+    <tr class="big-column">
+        <td colspan="3" class="bg1" style="text-align: center">{{ lang('ACP_CHAPTERS_NO_SERIES') }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<table class="table1 zebra-table">
+    <caption>{{ lang('ACP_CHAPTERS_CHAPTERS_LIST') }}</caption>
+    <thead>
+    <tr>
+        <th>{{ lang('ACP_CHAPTERS_SERIES_NAME') }}</th>
+        <th>{{ lang('ACP_CHAPTERS_CHAPTER_NAME') }}</th>
+        <th>{{ lang('ACP_CHAPTERS_CHAPTER_LINK') }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for chapters in loops.chapters %}
+    <tr class="{% if chapters.S_ROW_COUNT is even %}bg1{% else %}bg2{% endif %}">
+        <td>{{ chapters.CHAPTER_SERIES }}</td>
+        <td>{{ chapters.CHAPTER_NAME }}</td>
+        <td>{{ chapters.CHAPTER_LINK }}</td>
+    </tr>
+    {% else %}
+    <tr class="big-column">
+        <td colspan="3" class="bg1" style="text-align: center">{{ lang('ACP_CHAPTERS_NO_CHAPTERS') }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% INCLUDE 'overall_footer.html' %}

@@ -1,0 +1,53 @@
+{% INCLUDE 'overall_header.html' %}
+
+<h1>{{ lang('ACP_SERIES_TITLE') }}</h1>
+<p>{{ lang('ACP_SERIES_DESCRIPTION') }}</p>
+
+<form method="post" action="{{ U_ACTION }}">
+    <fieldset>
+        <legend>{{ lang('ACP_SERIES_NEW_SERIES') }}</legend>
+        <dl>
+            <dt><label for="series_name">{{ lang('ACP_SERIES_SERIES_NAME') }}</label></dt>
+            <dd><input class="text medium" type="text" id="series_name" name="series_name"></dd>
+        </dl>
+        <dl>
+            <dt><label for="series_img">{{ lang('ACP_SERIES_SERIES_IMG') }}</label></dt>
+            <dd><input class="text medium" type="text" id="series_img" name="series_img"></dd>
+        </dl>
+        <dl>
+            <dt><label for="series_link">{{ lang('ACP_SERIES_SERIES_LINK') }}</label></dt>
+            <dd><input class="text medium" type="text" id="series_link" name="series_link"></dd>
+        </dl>
+
+        <p class="quick">
+            <input type="submit" name="submit" value="{{ lang('SUBMIT') }}" class="button1">
+            {{ S_FORM_TOKEN }}
+        </p>
+    </fieldset>
+</form>
+
+<table class="table1 zebra-table">
+    <caption>{{ lang('ACP_SERIES_SERIES_LIST') }}</caption>
+    <thead>
+    <tr>
+        <th>{{ lang('ACP_SERIES_SERIES_NAME') }}</th>
+        <th>{{ lang('ACP_SERIES_SERIES_IMG') }}</th>
+        <th>{{ lang('ACP_SERIES_SERIES_LINK') }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for series in loops.series %}
+    <tr class="{% if series.S_ROW_COUNT is even %}bg1{% else %}bg2{% endif %}">
+        <td>{{ series.SERIES_NAME }}</td>
+        <td>{{ series.SERIES_IMG }}</td>
+        <td>{{ series.SERIES_LINK }}</td>
+    </tr>
+    {% else %}
+    <tr class="big-column">
+        <td colspan="3" class="bg1" style="text-align: center">{{ lang('ACP_SERIES_NO_SERIES') }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% INCLUDE 'overall_footer.html' %}
