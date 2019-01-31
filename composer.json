@@ -3,7 +3,7 @@
     "type": "phpbb-extension",
     "description": "Custom extension for ET's board",
     "homepage": "",
-    "version": "1.0.0-dev",
+    "version": "1.0.0-beta",
     "time": "2019-01-12",
     "license": "GPL-2.0-only",
     "authors": [
