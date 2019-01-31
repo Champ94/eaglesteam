@@ -48,17 +48,17 @@ class main_module
             case 'settings':
             default:
                 $this->tpl_name = 'acp_settings';
-                $this->page_title = $this->user->lang('ACP_EAGLES_TEAM_SETTINGS');
+                $this->page_title = $this->user->lang('ADM_EAGLES_TEAM_SETTINGS');
                 $this->mode_settings();
                 break;
             case 'series':
                 $this->tpl_name = 'acp_series';
-                $this->page_title = $this->user->lang('ACP_EAGLES_TEAM_SERIES');
+                $this->page_title = $this->user->lang('ADM_EAGLES_TEAM_SERIES');
                 $this->mode_series();
                 break;
             case 'chapters':
                 $this->tpl_name = 'acp_chapters';
-                $this->page_title = $this->user->lang('ACP_EAGLES_TEAM_CHAPTERS');
+                $this->page_title = $this->user->lang('ADM_EAGLES_TEAM_CHAPTERS');
                 $this->mode_chapters();
                 break;
         }
@@ -88,7 +88,8 @@ class main_module
             $social_1 = $this->request->variable('social_1', '', true);
             $social_2 = $this->request->variable('social_2', '', true);
             $social_3 = $this->request->variable('social_3', '', true);
-            $this->service->update_board_social($social_1, $social_2, $social_3);
+            $social_4 = $this->request->variable('social_4', '', true);
+            $this->service->update_board_social($social_1, $social_2, $social_3, $social_4);
 
             trigger_error($this->user->lang('CONFIG_UPDATED') . adm_back_link($this->u_action), E_USER_NOTICE);
         }

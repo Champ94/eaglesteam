@@ -135,8 +135,9 @@ class service
      * @param $social_1
      * @param $social_2
      * @param $social_3
+     * @param $social_4
      */
-    public function update_board_social($social_1, $social_2, $social_3) {
+    public function update_board_social($social_1, $social_2, $social_3, $social_4) {
 
     }
 }

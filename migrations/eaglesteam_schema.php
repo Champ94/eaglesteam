@@ -14,7 +14,9 @@ class eaglesteam_schema extends \phpbb\db\migration\migration
 {
     public function effectively_installed()
     {
-        return $this->db_tools->sql_table_exists($this->table_prefix . 'et_series');
+        return $this->db_tools->sql_table_exists($this->table_prefix . 'et_series')
+            && $this->db_tools->sql_table_exists($this->table_prefix . 'et_chapters')
+            && $this->db_tools->sql_table_exists($this->table_prefix . 'et_board_images');
     }
 
     static public function depends_on()
@@ -55,7 +57,8 @@ class eaglesteam_schema extends \phpbb\db\migration\migration
                         'social_1'          => array('VCHAR:100', ''),
                         'social_2'          => array('VCHAR:100', ''),
                         'social_3'          => array('VCHAR:100', ''),
-                        'config_images'     => array('VCHAR:20', ''),
+                        'social_4'          => array('VCHAR:100', ''),
+                        'config_name'       => array('VCHAR:20', ''),
                         'active_images'     => array('BOOL', 1),
                     ),
                     'PRIMARY_KEY'   => 'board_images_id',
