@@ -83,13 +83,29 @@ class main_module
 
             $banner_1 = $this->request->variable('banner_1', '', true);
             $banner_2 = $this->request->variable('banner_2', '', true);
-            $this->service->update_board_banner($banner_1, $banner_2);
+            $this->service->update_board_banner_images($banner_1, $banner_2);
 
             $social_1 = $this->request->variable('social_1', '', true);
             $social_2 = $this->request->variable('social_2', '', true);
             $social_3 = $this->request->variable('social_3', '', true);
             $social_4 = $this->request->variable('social_4', '', true);
-            $this->service->update_board_social($social_1, $social_2, $social_3, $social_4);
+            $this->service->update_board_social_images($social_1, $social_2, $social_3, $social_4);
+
+            trigger_error($this->user->lang('CONFIG_UPDATED') . adm_back_link($this->u_action), E_USER_NOTICE);
+        }
+
+        if ($this->request->is_set_post('submit_links')) {
+            $this->security_check();
+
+            $banner_1_link = $this->request->variable('banner_1_link', '', true);
+            $banner_2_link = $this->request->variable('banner_2_link', '', true);
+            $this->service->update_board_banner_links($banner_1_link, $banner_2_link);
+
+            $social_1_link = $this->request->variable('social_1_link', '', true);
+            $social_2_link = $this->request->variable('social_2_link', '', true);
+            $social_3_link = $this->request->variable('social_3_link', '', true);
+            $social_4_link = $this->request->variable('social_4_link', '', true);
+            $this->service->update_board_social_links($social_1_link, $social_2_link, $social_3_link, $social_4_link);
 
             trigger_error($this->user->lang('CONFIG_UPDATED') . adm_back_link($this->u_action), E_USER_NOTICE);
         }
@@ -98,6 +114,7 @@ class main_module
             'CHAMP94_EAGLESTEAM_SHOW_BOARD' => $this->config['champ94_eaglesteam_show_board'],
             'U_ACTION_FLAGS'                => $this->u_action,
             'U_ACTION_IMGAGES'              => $this->u_action,
+            'U_ACTION_LINKS'                => $this->u_action,
         ));
     }
 

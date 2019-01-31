@@ -32,43 +32,110 @@
         <legend>{{ lang('ADM_SETTINGS_IMAGES') }}</legend>
         <dl>
             <dt>
-                <label for="banner_1">Banner 1</label>
+                <label for="banner_1">Banner 1 image link</label>
                 <br>
-                <span>{{ lang('ADM_SETTINGS_BANNER_DESCRIPTION') }}</span>
+                <span>{{ lang('ADM_SETTINGS_BANNER_1_DESCRIPTION') }}</span>
             </dt>
             <dd><input class="text medium" type="text" id="banner_1" name="banner_1"></dd>
         </dl>
         <dl>
             <dt>
-                <label for="banner_2">Banner 2</label>
+                <label for="banner_2">Banner 2 image link</label>
                 <br>
-                <span>{{ lang('ADM_SETTINGS_BANNER_DESCRIPTION') }}</span>
+                <span>{{ lang('ADM_SETTINGS_BANNER_2_DESCRIPTION') }}</span>
             </dt>
             <dd><input class="text medium" type="text" id="banner_2" name="banner_2"></dd>
         </dl>
         <dl>
             <dt>
-                <label for="social_1">Social 1</label>
+                <label for="social_1">Social 1 image link</label>
                 <br>
-                <span>{{ lang('ADM_SETTINGS_SOCIAL_DESCRIPTION') }}</span>
+                <span>{{ lang('ADM_SETTINGS_SOCIAL_1_DESCRIPTION') }}</span>
             </dt>
             <dd><input class="text medium" type="text" id="social_1" name="social_1"></dd>
         </dl>
         <dl>
             <dt>
-                <label for="social_2">Social 2</label>
+                <label for="social_2">Social 2 image link</label>
                 <br>
-                <span>{{ lang('ADM_SETTINGS_BANNER_DESCRIPTION') }}</span>
+                <span>{{ lang('ADM_SETTINGS_SOCIAL_2_DESCRIPTION') }}</span>
             </dt>
             <dd><input class="text medium" type="text" id="social_2" name="social_2"></dd>
         </dl>
         <dl>
             <dt>
-                <label for="social_3">Social 3</label>
+                <label for="social_3">Social 3 image link</label>
                 <br>
-                <span>{{ lang('ADM_SETTINGS_BANNER_DESCRIPTION') }}</span>
+                <span>{{ lang('ADM_SETTINGS_SOCIAL_3_DESCRIPTION') }}</span>
             </dt>
             <dd><input class="text medium" type="text" id="social_3" name="social_3"></dd>
+        </dl>
+        <dl>
+            <dt>
+                <label for="social_4">Social 4 image link</label>
+                <br>
+                <span>{{ lang('ADM_SETTINGS_SOCIAL_4_DESCRIPTION') }}</span>
+            </dt>
+            <dd><input class="text medium" type="text" id="social_4" name="social_4"></dd>
+        </dl>
+
+        <p class="quick">
+            <input type="submit" name="submit_images" value="{{ lang('SUBMIT') }}" class="button1">
+            {{ S_FORM_TOKEN }}
+        </p>
+    </fieldset>
+</form>
+
+<form method="post" action="{{ U_ACTION_LINKS }}">
+    <fieldset>
+        <legend>{{ lang('ADM_SETTINGS_LINKS') }}</legend>
+        <dl>
+            <dt>
+                <label for="banner_link_1">Banner 1 click link</label>
+                <br>
+                <span>{{ lang('ADM_SETTINGS_BANNER_LINKS_DESCRIPTION') }}</span>
+            </dt>
+            <dd><input class="text medium" type="text" id="banner_link_1" name="banner_link_1"></dd>
+        </dl>
+        <dl>
+            <dt>
+                <label for="banner_link_2">Banner 2 click link</label>
+                <br>
+                <span>{{ lang('ADM_SETTINGS_BANNER_LINKS_DESCRIPTION') }}</span>
+            </dt>
+            <dd><input class="text medium" type="text" id="banner_link_2" name="banner_link_2"></dd>
+        </dl>
+        <dl>
+            <dt>
+                <label for="social_link_1">Social 1 click link</label>
+                <br>
+                <span>{{ lang('ADM_SETTINGS_SOCIAL_LINKS_DESCRIPTION') }}</span>
+            </dt>
+            <dd><input class="text medium" type="text" id="social_link_1" name="social_link_1"></dd>
+        </dl>
+        <dl>
+            <dt>
+                <label for="social_link_2">Social 2 click link</label>
+                <br>
+                <span>{{ lang('ADM_SETTINGS_SOCIAL_LINKS_DESCRIPTION') }}</span>
+            </dt>
+            <dd><input class="text medium" type="text" id="social_link_2" name="social_link_2"></dd>
+        </dl>
+        <dl>
+            <dt>
+                <label for="social_link_3">Social 3 click link</label>
+                <br>
+                <span>{{ lang('ADM_SETTINGS_SOCIAL_LINKS_DESCRIPTION') }}</span>
+            </dt>
+            <dd><input class="text medium" type="text" id="social_link_3" name="social_link_3"></dd>
+        </dl>
+        <dl>
+            <dt>
+                <label for="social_link_4">Social 4 click link</label>
+                <br>
+                <span>{{ lang('ADM_SETTINGS_SOCIAL_LINKS_DESCRIPTION') }}</span>
+            </dt>
+            <dd><input class="text medium" type="text" id="social_link_4" name="social_link_4"></dd>
         </dl>
 
         <p class="quick">

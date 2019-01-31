@@ -124,20 +124,77 @@ class service
     }
 
     /**
-     * @param $banner_1
-     * @param $banner_2
+     * Update board banner images links
+     * If a record doesn't exists it is created
+     * if it exists the record gets updated
+     *
+     * @param string $banner_1 link for first banner under Eagles Projects in Notice Board
+     * @param string $banner_2 link for second banner under Eagles Projects in Notice Board
      */
-    public function update_board_banner($banner_1, $banner_2) {
+    public function update_board_banner_images($banner_1, $banner_2) {
+        $sql_parameters = array(
+            'banner_1'  => $banner_1,
+            'banner_2'  => $banner_2,
+        );
 
+        if ($this->first_record_exists_in_board_images()){
+            $query = 'UPDATE '
+                . $this->et_board_images_table
+                . ' SET '
+                . $this->db->sql_build_array('UPDATE', $sql_parameters)
+                . ' WHERE board_images_id = 1';
+        } else {
+            $query = 'INSERT INTO '
+                . $this->et_board_images_table . ' '
+                . $this->db->sql_build_array('INSERT', $sql_parameters);
+        }
+
+        $this->db->sql_query($query);
+    }
+
+    private function first_record_exists_in_board_images() {
+        $query = 'SELECT COUNT(*) AS row_number
+        FROM ' . $this->et_board_images_table;
+
+        $result = $this->db->sql_query($query);
+
+        $row_number = (int) $this->db->sql_fetchfield('row_number');
+
+        $this->db->sql_freeresult($result);
+
+        return $row_number > 0;
     }
 
     /**
-     * @param $social_1
-     * @param $social_2
-     * @param $social_3
-     * @param $social_4
+     * Update social icons links
+     * If a record doesn't exists it is created
+     * if it exists the record gets updated
+     *
+     * @param string $social_1 link for first social icon under News Board
+     * @param string $social_2 link for second social icon under News Board
+     * @param string $social_3 link for third social icon under News Board
+     * @param string $social_4 link for fourth social icon under News Board
      */
-    public function update_board_social($social_1, $social_2, $social_3, $social_4) {
+    public function update_board_social_images($social_1, $social_2, $social_3, $social_4) {
+        $sql_parameters = array(
+            'social_1'  => $social_1,
+            'social_2'  => $social_2,
+            'social_3'  => $social_3,
+            'social_4'  => $social_4,
+        );
 
+        if ($this->first_record_exists_in_board_images()){
+            $query = 'UPDATE '
+                . $this->et_board_images_table
+                . ' SET '
+                . $this->db->sql_build_array('UPDATE', $sql_parameters)
+                . ' WHERE board_images_id = 1';
+        } else {
+            $query = 'INSERT INTO '
+                . $this->et_board_images_table . ' '
+                . $this->db->sql_build_array('INSERT', $sql_parameters);
+        }
+
+        $this->db->sql_query($query);
     }
 }
