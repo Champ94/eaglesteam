@@ -229,6 +229,9 @@ class service
         $this->db->sql_query($query);
     }
 
+    /**
+     * @return mixed
+     */
     public function get_board_images_data()
     {
         $query = 'SELECT * FROM ' . $this->et_board_images_table;
@@ -244,5 +247,84 @@ class service
         $this->db->sql_freeresult($result);
 
         return $output[0];
+    }
+
+    /**
+     * @return array
+     */
+    public function get_latest_chapters()
+    {
+        $query = array(
+            'SELECT' => 's.series_id, s.series_name, s.series_img, s.series_link, 
+                c.chapter_name, c.chapter_link, c.chapter_visible, c.series_id',
+            'FROM' => array(
+                $this->et_series_table      => 's',
+                $this->et_chapters_table    => 'c'
+            ),
+            'WHERE' => 's.series_id = c.series_id AND c.chapter_visible = 1',
+        );
+
+        $sql = $this->db->sql_build_query('SELECT', $query);
+
+        $result = $this->db->sql_query($sql);
+        $output = array();
+
+        while ($row = $this->db->sql_fetchrow($result))
+        {
+            $output[] = $row;
+        }
+
+        $this->db->sql_freeresult($result);
+
+        return $output;
+    }
+
+    public function get_latest_chapter_for_series()
+    {
+        $query = 'SELECT * FROM ' . $this->et_series_table;
+
+        $result = $this->db->sql_query_limit($query, 12, 0);
+        $series_list = array();
+
+        while ($row = $this->db->sql_fetchrow($result))
+        {
+            $series_list[] = $row;
+        }
+
+        $this->db->sql_freeresult($result);
+
+        $output = array();
+
+        foreach ($series_list as $series)
+        {
+            $query = 'SELECT * FROM ' . $this->et_chapters_table
+                . ' WHERE series_id = ' . $series['series_id']
+                . ' ORDER BY chapter_id DESC';
+
+            $result = $this->db->sql_query_limit($query, 1, 0);
+
+            if ($row = $this->db->sql_fetchrow($result))
+            {
+                $output[] = array_merge($row, array(
+                    'series_name'   => $series['series_name'],
+                    'series_img'    => $series['series_img'],
+                    'series_link'   => $series['series_link'],
+                ));
+            }
+            else
+            {
+                $output[] = array(
+                    'series_name'   => $series['series_name'],
+                    'series_img'    => $series['series_img'],
+                    'series_link'   => $series['series_link'],
+                    'chapter_name'  => '#',
+                    'chapter_link'  => '#',
+                );
+            }
+
+            $this->db->sql_freeresult($result);
+        }
+
+        return $output;
     }
 }

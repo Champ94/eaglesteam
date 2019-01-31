@@ -13,75 +13,16 @@ if (!defined('IN_PHPBB'))
     exit;
 }
 
-echo '
-<div class="et-project-box">
-                                <a class="et-project-title">Fuuka</a><br>
-                                <a class="et-project-chapter">Chapter</a><br>
-                                <img class="et-project-img" src="images/projects/Fuuka.jpg">
-                            </div>
-                            <div class="et-project-box">
-                                <a class="et-project-title">Dome x Kano</a><br>
-                                <a class="et-project-chapter">Chapter</a><br>
-                                <img class="et-project-img" src="images/projects/DomesticnaKanojo.jpg">
-                            </div>
-                            <div class="et-project-box">
-                                <a class="et-project-title">Baby Steps</a><br>
-                                <a class="et-project-chapter">Chapter</a><br>
-                                <img class="et-project-img" src="images/projects/BabySteps.jpg">
-                            </div>
-                            <div class="et-project-box">
-                                <a class="et-project-title">Extra Game</a><br>
-                                <a class="et-project-chapter">Chapter</a><br>
-                                <img class="et-project-img" src="images/projects/Fuuka.jpg">
-                            </div>
-                            <div class="et-project-box">
-                                <a class="et-project-title">Citrus</a><br>
-                                <a class="et-project-chapter">Chapter</a><br>
-                                <img class="et-project-img" src="images/projects/Citrus.jpg">
-                            </div>
-                            <div class="et-project-box">
-                                <a class="et-project-title">Accel World</a><br>
-                                <a class="et-project-chapter">Chapter</a><br>
-                                <img class="et-project-img" src="images/projects/Fuuka.jpg">
-                            </div>
-                            <div class="et-project-box">
-                                <a class="et-project-title">Spice & Wolf</a><br>
-                                <a class="et-project-chapter">Chapter</a><br>
-                                <img class="et-project-img" src="images/projects/Spice&Wolf.jpg">
-                            </div>
-                            <div class="et-project-box">
-                                <a class="et-project-title">Fuuka</a><br>
-                                <a class="et-project-chapter">Chapter</a><br>
-                                <img class="et-project-img" src="images/projects/Fuuka.jpg">
-                            </div>
-                            <div class="et-project-box">
-                                <a class="et-project-title">Dome x Kano</a><br>
-                                <a class="et-project-chapter">Chapter</a><br>
-                                <img class="et-project-img" src="images/projects/DomesticnaKanojo.jpg">
-                            </div>
-                            <div class="et-project-box">
-                                <a class="et-project-title">Baby Steps</a><br>
-                                <a class="et-project-chapter">Chapter</a><br>
-                                <img class="et-project-img" src="images/projects/BabySteps.jpg">
-                            </div>
-                            <div class="et-project-box">
-                                <a class="et-project-title">Extra Game</a><br>
-                                <a class="et-project-chapter">Chapter</a><br>
-                                <img class="et-project-img" src="images/projects/Fuuka.jpg">
-                            </div>
-                            <div class="et-project-box">
-                                <a class="et-project-title">Citrus</a><br>
-                                <a class="et-project-chapter">Chapter</a><br>
-                                <img class="et-project-img" src="images/projects/Citrus.jpg">
-                            </div>
-                            <div class="et-project-box">
-                                <a class="et-project-title">Accel World</a><br>
-                                <a class="et-project-chapter">Chapter</a><br>
-                                <img class="et-project-img" src="images/projects/Fuuka.jpg">
-                            </div>
-                            <div class="et-project-box">
-                                <a class="et-project-title">Spice & Wolf</a><br>
-                                <a class="et-project-chapter">Chapter</a><br>
-                                <img class="et-project-img" src="images/projects/Spice&Wolf.jpg">
-                            </div>
-';
+$service = $phpbb_container->get('champ94.eaglesteam.service');
+$latest_chapter_for_series = $service->get_latest_chapter_for_series();
+
+foreach ($latest_chapter_for_series as $latest)
+{
+    echo '
+        <div class="et-project-box">
+            <a href="' . $latest['series_link'] . '" class="et-project-title">' . $latest['series_name'] . '</a><br>
+            <a href="' . $latest['chapter_link'] . '" class="et-project-chapter">Chapter ' . $latest['chapter_name'] . '</a><br>
+            <img class="et-project-img" src="' . $latest['series_img'] . '">
+        </div>
+    ';
+}

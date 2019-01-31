@@ -13,7 +13,12 @@ if (!defined('IN_PHPBB'))
     exit;
 }
 
+global $phpbb_container;
+
+$service = $phpbb_container->get('champ94.eaglesteam.service');
+$board_images_data = $service->get_board_images_data();
+
 echo '
-                                <a href="#"><img src="images/projects/Spice&Wolf.jpg"></a>
-                                <a href="#"><img src="images/projects/Spice&Wolf.jpg"></a>
-';
+                                <a href="' . $board_images_data['banner_1_link'] . '"><img src="' . $board_images_data['banner_1_img'] . '"></a>
+                                <a href="' . $board_images_data['banner_2_link'] . '"><img src="' . $board_images_data['banner_2_img'] . '"></a>
+    ';

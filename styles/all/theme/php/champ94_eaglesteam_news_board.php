@@ -13,20 +13,20 @@ if (!defined('IN_PHPBB'))
     exit;
 }
 
-echo '
-                            <div><p class="et-news-line">1.&nbsp;</p><a href="#">Nome Serie n. capitolo</a></div>
-                            <div><p class="et-news-line">2.&nbsp;</p><a href="#">Nome Serie n. capitolo</a></div>
-                            <div><p class="et-news-line">3.&nbsp;</p><a href="#">Nome Serie n. capitolo</a></div>
-                            <div><p class="et-news-line">4.&nbsp;</p><a href="#">Nome Serie n. capitolo</a></div>
-                            <div><p class="et-news-line">5.&nbsp;</p><a href="#">Nome Serie n. capitolo</a></div>
-                            <div><p class="et-news-line">6.&nbsp;</p><a href="#">Nome Serie n. capitolo</a></div>
-                            <div><p class="et-news-line">7.&nbsp;</p><a href="#">Nome Serie n. capitolo</a></div>
-                            <div><p class="et-news-line">8.&nbsp;</p><a href="#">Nome Serie n. capitolo</a></div>
-                            <div><p class="et-news-line">9.&nbsp;</p><a href="#">Nome Serie n. capitolo</a></div>
-                            <div><p class="et-news-line">10.&nbsp;</p><a href="#">Nome Serie n. capitolo</a></div>
-                            <div><p class="et-news-line">11.&nbsp;</p><a href="#">Nome Serie n. capitolo</a></div>
-                            <div><p class="et-news-line">12.&nbsp;</p><a href="#">Nome Serie n. capitolo</a></div>
-                            <div><p class="et-news-line">13.&nbsp;</p><a href="#">Nome Serie n. capitolo</a></div>
-                            <div><p class="et-news-line">14.&nbsp;</p><a href="#">Nome Serie n. capitolo</a></div>
-                            <div><p class="et-news-line">15. </p><a href="#">Nome Serie n. capitolo</a></div>
-';
+global $phpbb_container;
+
+$service = $phpbb_container->get('champ94.eaglesteam.service');
+$latest_chapters = $service->get_latest_chapters();
+
+$i = 0;
+
+foreach ($latest_chapters as $chapter)
+{
+    $i++;
+    echo '
+        <div>
+            <p class="et-news-line">' . $i . '.&nbsp;</p>
+            <a href="' . $chapter['chapter_link'] . '">' . $chapter['series_name'] . ' n. ' . $chapter['chapter_name'] . '</a>
+        </div>
+    ';
+}
