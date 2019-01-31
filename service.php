@@ -228,4 +228,21 @@ class service
 
         $this->db->sql_query($query);
     }
+
+    public function get_board_images_data()
+    {
+        $query = 'SELECT * FROM ' . $this->et_board_images_table;
+
+        $result = $this->db->sql_query($query);
+        $output = array();
+
+        while ($row = $this->db->sql_fetchrow($result))
+        {
+            $output[] = $row;
+        }
+
+        $this->db->sql_freeresult($result);
+
+        return $output[0];
+    }
 }

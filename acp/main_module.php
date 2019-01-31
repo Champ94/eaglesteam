@@ -71,6 +71,23 @@ class main_module
     {
         add_form_key(self::FORM_KEY);
 
+        $board_images_data = $this->service->get_board_images_data();
+
+        $this->template->assign_vars(array(
+            'BANNER_1_IMG'  => $board_images_data['banner_1_img'],
+            'BANNER_2_IMG'  => $board_images_data['banner_2_img'],
+            'SOCIAL_1_IMG'  => $board_images_data['social_1_img'],
+            'SOCIAL_2_IMG'  => $board_images_data['social_2_img'],
+            'SOCIAL_3_IMG'  => $board_images_data['social_3_img'],
+            'SOCIAL_4_IMG'  => $board_images_data['social_4_img'],
+            'BANNER_1_LINK' => $board_images_data['banner_1_link'],
+            'BANNER_2_LINK' => $board_images_data['banner_2_link'],
+            'SOCIAL_1_LINK' => $board_images_data['social_1_link'],
+            'SOCIAL_2_LINK' => $board_images_data['social_2_link'],
+            'SOCIAL_3_LINK' => $board_images_data['social_3_link'],
+            'SOCIAL_4_LINK' => $board_images_data['social_4_link'],
+        ));
+
         if ($this->request->is_set_post('submit_flags')) {
             $this->security_check();
 
@@ -97,15 +114,15 @@ class main_module
         if ($this->request->is_set_post('submit_links')) {
             $this->security_check();
 
-            $banner_1_link = $this->request->variable('banner_1_link', '', true);
-            $banner_2_link = $this->request->variable('banner_2_link', '', true);
-            $this->service->update_board_banner_links($banner_1_link, $banner_2_link);
+            $banner_link_1 = $this->request->variable('banner_link_1', '', true);
+            $banner_link_2 = $this->request->variable('banner_link_2', '', true);
+            $this->service->update_board_banner_links($banner_link_1, $banner_link_2);
 
-            $social_1_link = $this->request->variable('social_1_link', '', true);
-            $social_2_link = $this->request->variable('social_2_link', '', true);
-            $social_3_link = $this->request->variable('social_3_link', '', true);
-            $social_4_link = $this->request->variable('social_4_link', '', true);
-            $this->service->update_board_social_links($social_1_link, $social_2_link, $social_3_link, $social_4_link);
+            $social_link_1 = $this->request->variable('social_link_1', '', true);
+            $social_link_2 = $this->request->variable('social_link_2', '', true);
+            $social_link_3 = $this->request->variable('social_link_3', '', true);
+            $social_link_4 = $this->request->variable('social_link_4', '', true);
+            $this->service->update_board_social_links($social_link_1, $social_link_2, $social_link_3, $social_link_4);
 
             trigger_error($this->user->lang('CONFIG_UPDATED') . adm_back_link($this->u_action), E_USER_NOTICE);
         }
