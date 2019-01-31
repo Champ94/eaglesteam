@@ -27,7 +27,7 @@
 }
 
 .et-news-container {
-    max-height: 400px;
+    height: 400px;
     overflow-y: scroll;
 }
 
@@ -67,4 +67,10 @@
 
 .et-banner {
     margin: 60px 0 0 0;
+}
+
+.et-social {
+    text-align: left;
+    margin-top: 30px;
+    margin-left: 40px;
 }

@@ -34,7 +34,7 @@ class eaglesteam_schema extends \phpbb\db\migration\migration
                     'COLUMNS' => array(
                         'series_id'     => array('UINT', null, 'auto_increment'),
                         'series_name'   => array('VCHAR:50', ''),
-                        'series_img'    => array('VCHAR:50', ''),
+                        'series_img'    => array('VCHAR:100', ''),
                         'series_link'   => array('VCHAR:100', ''),
                     ),
                     'PRIMARY_KEY' => 'series_id',
