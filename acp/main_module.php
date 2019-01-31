@@ -48,17 +48,17 @@ class main_module
             case 'settings':
             default:
                 $this->tpl_name = 'acp_settings';
-                $this->page_title = $this->user->lang('ACP_EAGLES_TEAM_SETTINGS');
+                $this->page_title = $this->user->lang('ADM_EAGLES_TEAM_SETTINGS');
                 $this->mode_settings();
                 break;
             case 'series':
                 $this->tpl_name = 'acp_series';
-                $this->page_title = $this->user->lang('ACP_EAGLES_TEAM_SERIES');
+                $this->page_title = $this->user->lang('ADM_EAGLES_TEAM_SERIES');
                 $this->mode_series();
                 break;
             case 'chapters':
                 $this->tpl_name = 'acp_chapters';
-                $this->page_title = $this->user->lang('ACP_EAGLES_TEAM_CHAPTERS');
+                $this->page_title = $this->user->lang('ADM_EAGLES_TEAM_CHAPTERS');
                 $this->mode_chapters();
                 break;
         }
@@ -70,6 +70,23 @@ class main_module
     private function mode_settings()
     {
         add_form_key(self::FORM_KEY);
+
+        $board_images_data = $this->service->get_board_images_data();
+
+        $this->template->assign_vars(array(
+            'BANNER_1_IMG'  => $board_images_data['banner_1_img'],
+            'BANNER_2_IMG'  => $board_images_data['banner_2_img'],
+            'SOCIAL_1_IMG'  => $board_images_data['social_1_img'],
+            'SOCIAL_2_IMG'  => $board_images_data['social_2_img'],
+            'SOCIAL_3_IMG'  => $board_images_data['social_3_img'],
+            'SOCIAL_4_IMG'  => $board_images_data['social_4_img'],
+            'BANNER_1_LINK' => $board_images_data['banner_1_link'],
+            'BANNER_2_LINK' => $board_images_data['banner_2_link'],
+            'SOCIAL_1_LINK' => $board_images_data['social_1_link'],
+            'SOCIAL_2_LINK' => $board_images_data['social_2_link'],
+            'SOCIAL_3_LINK' => $board_images_data['social_3_link'],
+            'SOCIAL_4_LINK' => $board_images_data['social_4_link'],
+        ));
 
         if ($this->request->is_set_post('submit_flags')) {
             $this->security_check();
@@ -83,12 +100,29 @@ class main_module
 
             $banner_1 = $this->request->variable('banner_1', '', true);
             $banner_2 = $this->request->variable('banner_2', '', true);
-            $this->service->update_board_banner($banner_1, $banner_2);
+            $this->service->update_board_banner_images($banner_1, $banner_2);
 
             $social_1 = $this->request->variable('social_1', '', true);
             $social_2 = $this->request->variable('social_2', '', true);
             $social_3 = $this->request->variable('social_3', '', true);
-            $this->service->update_board_social($social_1, $social_2, $social_3);
+            $social_4 = $this->request->variable('social_4', '', true);
+            $this->service->update_board_social_images($social_1, $social_2, $social_3, $social_4);
+
+            trigger_error($this->user->lang('CONFIG_UPDATED') . adm_back_link($this->u_action), E_USER_NOTICE);
+        }
+
+        if ($this->request->is_set_post('submit_links')) {
+            $this->security_check();
+
+            $banner_link_1 = $this->request->variable('banner_link_1', '', true);
+            $banner_link_2 = $this->request->variable('banner_link_2', '', true);
+            $this->service->update_board_banner_links($banner_link_1, $banner_link_2);
+
+            $social_link_1 = $this->request->variable('social_link_1', '', true);
+            $social_link_2 = $this->request->variable('social_link_2', '', true);
+            $social_link_3 = $this->request->variable('social_link_3', '', true);
+            $social_link_4 = $this->request->variable('social_link_4', '', true);
+            $this->service->update_board_social_links($social_link_1, $social_link_2, $social_link_3, $social_link_4);
 
             trigger_error($this->user->lang('CONFIG_UPDATED') . adm_back_link($this->u_action), E_USER_NOTICE);
         }
@@ -97,6 +131,7 @@ class main_module
             'CHAMP94_EAGLESTEAM_SHOW_BOARD' => $this->config['champ94_eaglesteam_show_board'],
             'U_ACTION_FLAGS'                => $this->u_action,
             'U_ACTION_IMGAGES'              => $this->u_action,
+            'U_ACTION_LINKS'                => $this->u_action,
         ));
     }
 

@@ -1,16 +1,16 @@
 {% INCLUDE 'overall_header.html' %}
 
-<h1>{{ lang('ACP_SETTINGS_TITLE') }}</h1>
-<p>{{ lang('ACP_SETTINGS_DESCRIPTION') }}</p>
+<h1>{{ lang('ADM_SETTINGS_TITLE') }}</h1>
+<p>{{ lang('ADM_SETTINGS_DESCRIPTION') }}</p>
 
 <form method="post" action="{{ U_ACTION_FLAGS }}">
     <fieldset>
-        <legend>{{ lang('ACP_SETTINGS_FLAGS') }}</legend>
+        <legend>{{ lang('ADM_SETTINGS_FLAGS') }}</legend>
         <dl>
             <dt>
-                <label for="champ94_eaglesteam_show_board">{{ lang('ACP_SETTINGS_SHOW_BOARD') }}</label>
+                <label for="champ94_eaglesteam_show_board">{{ lang('ADM_SETTINGS_SHOW_BOARD') }}</label>
                 <br>
-                <span>{{ lang('ACP_SETTINGS_SHOW_BOARD_DESCRIPTION') }}</span>
+                <span>{{ lang('ADM_SETTINGS_SHOW_BOARD_DESCRIPTION') }}</span>
             </dt>
             <dd>
                 <input type="radio" class="radio" name="champ94_eaglesteam_show_board" value="1"
@@ -29,50 +29,117 @@
 
 <form method="post" action="{{ U_ACTION_IMAGES }}">
     <fieldset>
-        <legend>{{ lang('ACP_SETTINGS_IMAGES') }}</legend>
+        <legend>{{ lang('ADM_SETTINGS_IMAGES') }}</legend>
         <dl>
             <dt>
-                <label for="banner_1">Banner 1</label>
+                <label for="banner_1">Banner 1 image link</label>
                 <br>
-                <span>{{ lang('ACP_SETTINGS_BANNER_DESCRIPTION') }}</span>
+                <span>{{ lang('ADM_SETTINGS_BANNER_1_DESCRIPTION') }}</span>
             </dt>
-            <dd><input class="text medium" type="text" id="banner_1" name="banner_1"></dd>
+            <dd><input class="text medium" type="text" id="banner_1" name="banner_1" value="{{ BANNER_1_IMG }}"></dd>
         </dl>
         <dl>
             <dt>
-                <label for="banner_2">Banner 2</label>
+                <label for="banner_2">Banner 2 image link</label>
                 <br>
-                <span>{{ lang('ACP_SETTINGS_BANNER_DESCRIPTION') }}</span>
+                <span>{{ lang('ADM_SETTINGS_BANNER_2_DESCRIPTION') }}</span>
             </dt>
-            <dd><input class="text medium" type="text" id="banner_2" name="banner_2"></dd>
+            <dd><input class="text medium" type="text" id="banner_2" name="banner_2" value="{{ BANNER_2_IMG }}"></dd>
         </dl>
         <dl>
             <dt>
-                <label for="social_1">Social 1</label>
+                <label for="social_1">Social 1 image link</label>
                 <br>
-                <span>{{ lang('ACP_SETTINGS_SOCIAL_DESCRIPTION') }}</span>
+                <span>{{ lang('ADM_SETTINGS_SOCIAL_1_DESCRIPTION') }}</span>
             </dt>
-            <dd><input class="text medium" type="text" id="social_1" name="social_1"></dd>
+            <dd><input class="text medium" type="text" id="social_1" name="social_1" value="{{ SOCIAL_1_IMG }}"></dd>
         </dl>
         <dl>
             <dt>
-                <label for="social_2">Social 2</label>
+                <label for="social_2">Social 2 image link</label>
                 <br>
-                <span>{{ lang('ACP_SETTINGS_BANNER_DESCRIPTION') }}</span>
+                <span>{{ lang('ADM_SETTINGS_SOCIAL_2_DESCRIPTION') }}</span>
             </dt>
-            <dd><input class="text medium" type="text" id="social_2" name="social_2"></dd>
+            <dd><input class="text medium" type="text" id="social_2" name="social_2" value="{{ SOCIAL_2_IMG }}"></dd>
         </dl>
         <dl>
             <dt>
-                <label for="social_3">Social 3</label>
+                <label for="social_3">Social 3 image link</label>
                 <br>
-                <span>{{ lang('ACP_SETTINGS_BANNER_DESCRIPTION') }}</span>
+                <span>{{ lang('ADM_SETTINGS_SOCIAL_3_DESCRIPTION') }}</span>
             </dt>
-            <dd><input class="text medium" type="text" id="social_3" name="social_3"></dd>
+            <dd><input class="text medium" type="text" id="social_3" name="social_3" value="{{ SOCIAL_3_IMG }}"></dd>
+        </dl>
+        <dl>
+            <dt>
+                <label for="social_4">Social 4 image link</label>
+                <br>
+                <span>{{ lang('ADM_SETTINGS_SOCIAL_4_DESCRIPTION') }}</span>
+            </dt>
+            <dd><input class="text medium" type="text" id="social_4" name="social_4" value="{{ SOCIAL_4_IMG }}"></dd>
         </dl>
 
         <p class="quick">
             <input type="submit" name="submit_images" value="{{ lang('SUBMIT') }}" class="button1">
+            {{ S_FORM_TOKEN }}
+        </p>
+    </fieldset>
+</form>
+
+<form method="post" action="{{ U_ACTION_LINKS }}">
+    <fieldset>
+        <legend>{{ lang('ADM_SETTINGS_LINKS') }}</legend>
+        <dl>
+            <dt>
+                <label for="banner_link_1">Banner 1 click link</label>
+                <br>
+                <span>{{ lang('ADM_SETTINGS_BANNER_LINK_1_DESCRIPTION') }}</span>
+            </dt>
+            <dd><input class="text medium" type="text" id="banner_link_1" name="banner_link_1" value="{{ BANNER_1_LINK }}"></dd>
+        </dl>
+        <dl>
+            <dt>
+                <label for="banner_link_2">Banner 2 click link</label>
+                <br>
+                <span>{{ lang('ADM_SETTINGS_BANNER_LINK_2_DESCRIPTION') }}</span>
+            </dt>
+            <dd><input class="text medium" type="text" id="banner_link_2" name="banner_link_2" value="{{ BANNER_2_LINK }}"></dd>
+        </dl>
+        <dl>
+            <dt>
+                <label for="social_link_1">Social 1 click link</label>
+                <br>
+                <span>{{ lang('ADM_SETTINGS_SOCIAL_LINK_1_DESCRIPTION') }}</span>
+            </dt>
+            <dd><input class="text medium" type="text" id="social_link_1" name="social_link_1" value="{{ SOCIAL_1_LINK }}"></dd>
+        </dl>
+        <dl>
+            <dt>
+                <label for="social_link_2">Social 2 click link</label>
+                <br>
+                <span>{{ lang('ADM_SETTINGS_SOCIAL_LINK_2_DESCRIPTION') }}</span>
+            </dt>
+            <dd><input class="text medium" type="text" id="social_link_2" name="social_link_2" value="{{ SOCIAL_2_LINK }}"></dd>
+        </dl>
+        <dl>
+            <dt>
+                <label for="social_link_3">Social 3 click link</label>
+                <br>
+                <span>{{ lang('ADM_SETTINGS_SOCIAL_LINK_3_DESCRIPTION') }}</span>
+            </dt>
+            <dd><input class="text medium" type="text" id="social_link_3" name="social_link_3" value="{{ SOCIAL_3_LINK }}"></dd>
+        </dl>
+        <dl>
+            <dt>
+                <label for="social_link_4">Social 4 click link</label>
+                <br>
+                <span>{{ lang('ADM_SETTINGS_SOCIAL_LINK_4_DESCRIPTION') }}</span>
+            </dt>
+            <dd><input class="text medium" type="text" id="social_link_4" name="social_link_4" value="{{ SOCIAL_4_LINK }}"></dd>
+        </dl>
+
+        <p class="quick">
+            <input type="submit" name="submit_links" value="{{ lang('SUBMIT') }}" class="button1">
             {{ S_FORM_TOKEN }}
         </p>
     </fieldset>

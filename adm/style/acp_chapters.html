@@ -1,28 +1,28 @@
 {% INCLUDE 'overall_header.html' %}
 
-<h1>{{ lang('ACP_CHAPTERS_TITLE') }}</h1>
-<p>{{ lang('ACP_CHAPTERS_DESCRIPTION') }}</p>
+<h1>{{ lang('ADM_CHAPTERS_TITLE') }}</h1>
+<p>{{ lang('ADM_CHAPTERS_DESCRIPTION') }}</p>
 
 <form method="post" action="{{ U_ACTION }}">
     <fieldset>
-        <legend>{{ lang('ACP_CHAPTERS_NEW_CHAPTERS') }}</legend>
+        <legend>{{ lang('ADM_CHAPTERS_NEW_CHAPTERS') }}</legend>
         <dl>
-            <dt><label for="chapter_name">{{ lang('ACP_CHAPTER_CHAPTER_NAME') }}</label></dt>
+            <dt><label for="chapter_name">{{ lang('ADM_CHAPTER_CHAPTER_NAME') }}</label></dt>
             <dd><input class="text medium" type="text" id="chapter_name" name="chapter_name"></dd>
         </dl>
         <dl>
-            <dt><label for="chapter_link">{{ lang('ACP_CHAPTER_CHAPTER_LINK') }}</label></dt>
+            <dt><label for="chapter_link">{{ lang('ADM_CHAPTER_CHAPTER_LINK') }}</label></dt>
             <dd><input class="text medium" type="text" id="chapter_link" name="chapter_link"></dd>
         </dl>
         <dl>
-            <dt><label for="chapter_visibility">{{ lang('ACP_CHAPTER_CHAPTER_VISIBILITY') }}</label></dt>
+            <dt><label for="chapter_visibility">{{ lang('ADM_CHAPTER_CHAPTER_VISIBILITY') }}</label></dt>
             <dd>
                 <input type="radio" class="radio" name="chapter_visibility" value="1" checked="checked"/> {{ lang('YES') }} &nbsp;
                 <input type="radio" class="radio" name="chapter_visibility" value="0"/> {{ lang('NO') }}
             </dd>
         </dl>
         <dl>
-            <dt><label for="chapter_series_id">{{ lang('ACP_CHAPTER_SERIES_ID') }}</label></dt>
+            <dt><label for="chapter_series_id">{{ lang('ADM_CHAPTER_SERIES_ID') }}</label></dt>
             <dd><input class="text medium" type="text" id="chapter_series_id" name="chapter_series_id"></dd>
         </dl>
 
@@ -34,11 +34,11 @@
 </form>
 
 <table class="table1 zebra-table">
-    <caption>{{ lang('ACP_CHAPTERS_SERIES_LIST') }}</caption>
+    <caption>{{ lang('ADM_CHAPTERS_SERIES_LIST') }}</caption>
     <thead>
     <tr>
-        <th>{{ lang('ACP_CHAPTERS_SERIES_ID') }}</th>
-        <th>{{ lang('ACP_CHAPTERS_SERIES_NAME') }}</th>
+        <th>{{ lang('ADM_CHAPTERS_SERIES_ID') }}</th>
+        <th>{{ lang('ADM_CHAPTERS_SERIES_NAME') }}</th>
     </tr>
     </thead>
     <tbody>
@@ -49,19 +49,19 @@
     </tr>
     {% else %}
     <tr class="big-column">
-        <td colspan="3" class="bg1" style="text-align: center">{{ lang('ACP_CHAPTERS_NO_SERIES') }}</td>
+        <td colspan="3" class="bg1" style="text-align: center">{{ lang('ADM_CHAPTERS_NO_SERIES') }}</td>
     </tr>
     {% endfor %}
     </tbody>
 </table>
 
 <table class="table1 zebra-table">
-    <caption>{{ lang('ACP_CHAPTERS_CHAPTERS_LIST') }}</caption>
+    <caption>{{ lang('ADM_CHAPTERS_CHAPTERS_LIST') }}</caption>
     <thead>
     <tr>
-        <th>{{ lang('ACP_CHAPTERS_SERIES_NAME') }}</th>
-        <th>{{ lang('ACP_CHAPTERS_CHAPTER_NAME') }}</th>
-        <th>{{ lang('ACP_CHAPTERS_CHAPTER_LINK') }}</th>
+        <th>{{ lang('ADM_CHAPTERS_SERIES_NAME') }}</th>
+        <th>{{ lang('ADM_CHAPTERS_CHAPTER_NAME') }}</th>
+        <th>{{ lang('ADM_CHAPTERS_CHAPTER_LINK') }}</th>
     </tr>
     </thead>
     <tbody>
@@ -73,7 +73,7 @@
     </tr>
     {% else %}
     <tr class="big-column">
-        <td colspan="3" class="bg1" style="text-align: center">{{ lang('ACP_CHAPTERS_NO_CHAPTERS') }}</td>
+        <td colspan="3" class="bg1" style="text-align: center">{{ lang('ADM_CHAPTERS_NO_CHAPTERS') }}</td>
     </tr>
     {% endfor %}
     </tbody>

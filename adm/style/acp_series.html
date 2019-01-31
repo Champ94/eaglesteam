@@ -1,21 +1,21 @@
 {% INCLUDE 'overall_header.html' %}
 
-<h1>{{ lang('ACP_SERIES_TITLE') }}</h1>
-<p>{{ lang('ACP_SERIES_DESCRIPTION') }}</p>
+<h1>{{ lang('ADM_SERIES_TITLE') }}</h1>
+<p>{{ lang('ADM_SERIES_DESCRIPTION') }}</p>
 
 <form method="post" action="{{ U_ACTION }}">
     <fieldset>
-        <legend>{{ lang('ACP_SERIES_NEW_SERIES') }}</legend>
+        <legend>{{ lang('ADM_SERIES_NEW_SERIES') }}</legend>
         <dl>
-            <dt><label for="series_name">{{ lang('ACP_SERIES_SERIES_NAME') }}</label></dt>
+            <dt><label for="series_name">{{ lang('ADM_SERIES_SERIES_NAME') }}</label></dt>
             <dd><input class="text medium" type="text" id="series_name" name="series_name"></dd>
         </dl>
         <dl>
-            <dt><label for="series_img">{{ lang('ACP_SERIES_SERIES_IMG') }}</label></dt>
+            <dt><label for="series_img">{{ lang('ADM_SERIES_SERIES_IMG') }}</label></dt>
             <dd><input class="text medium" type="text" id="series_img" name="series_img"></dd>
         </dl>
         <dl>
-            <dt><label for="series_link">{{ lang('ACP_SERIES_SERIES_LINK') }}</label></dt>
+            <dt><label for="series_link">{{ lang('ADM_SERIES_SERIES_LINK') }}</label></dt>
             <dd><input class="text medium" type="text" id="series_link" name="series_link"></dd>
         </dl>
 
@@ -27,12 +27,12 @@
 </form>
 
 <table class="table1 zebra-table">
-    <caption>{{ lang('ACP_SERIES_SERIES_LIST') }}</caption>
+    <caption>{{ lang('ADM_SERIES_SERIES_LIST') }}</caption>
     <thead>
     <tr>
-        <th>{{ lang('ACP_SERIES_SERIES_NAME') }}</th>
-        <th>{{ lang('ACP_SERIES_SERIES_IMG') }}</th>
-        <th>{{ lang('ACP_SERIES_SERIES_LINK') }}</th>
+        <th>{{ lang('ADM_SERIES_SERIES_LIST_NAME') }}</th>
+        <th>{{ lang('ADM_SERIES_SERIES_LIST_IMG') }}</th>
+        <th>{{ lang('ADM_SERIES_SERIES_LIST_LINK') }}</th>
     </tr>
     </thead>
     <tbody>
@@ -44,7 +44,7 @@
     </tr>
     {% else %}
     <tr class="big-column">
-        <td colspan="3" class="bg1" style="text-align: center">{{ lang('ACP_SERIES_NO_SERIES') }}</td>
+        <td colspan="3" class="bg1" style="text-align: center">{{ lang('ADM_SERIES_NO_SERIES') }}</td>
     </tr>
     {% endfor %}
     </tbody>
