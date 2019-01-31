@@ -133,8 +133,95 @@ class service
      */
     public function update_board_banner_images($banner_1, $banner_2) {
         $sql_parameters = array(
-            'banner_1'  => $banner_1,
-            'banner_2'  => $banner_2,
+            'banner_1_img'  => $banner_1,
+            'banner_2_img'  => $banner_2,
+        );
+
+        if ($this->first_record_exists_in_board_images()){
+            $query = 'UPDATE '
+                . $this->et_board_images_table
+                . ' SET '
+                . $this->db->sql_build_array('UPDATE', $sql_parameters)
+                . ' WHERE board_images_id = 1';
+        } else {
+            $query = 'INSERT INTO '
+                . $this->et_board_images_table . ' '
+                . $this->db->sql_build_array('INSERT', $sql_parameters);
+        }
+
+        $this->db->sql_query($query);
+    }
+
+    /**
+     * Update social icons links
+     * If a record doesn't exists it is created
+     * if it exists the record gets updated
+     *
+     * @param string $social_1 link for first social icon under News Board
+     * @param string $social_2 link for second social icon under News Board
+     * @param string $social_3 link for third social icon under News Board
+     * @param string $social_4 link for fourth social icon under News Board
+     */
+    public function update_board_social_images($social_1, $social_2, $social_3, $social_4) {
+        $sql_parameters = array(
+            'social_1_img'  => $social_1,
+            'social_2_img'  => $social_2,
+            'social_3_img'  => $social_3,
+            'social_4_img'  => $social_4,
+        );
+
+        if ($this->first_record_exists_in_board_images()){
+            $query = 'UPDATE '
+                . $this->et_board_images_table
+                . ' SET '
+                . $this->db->sql_build_array('UPDATE', $sql_parameters)
+                . ' WHERE board_images_id = 1';
+        } else {
+            $query = 'INSERT INTO '
+                . $this->et_board_images_table . ' '
+                . $this->db->sql_build_array('INSERT', $sql_parameters);
+        }
+
+        $this->db->sql_query($query);
+    }
+
+    /**
+     * @param $banner_1
+     * @param $banner_2
+     */
+    public function update_board_banner_links($banner_1, $banner_2) {
+        $sql_parameters = array(
+            'banner_1_link' => $banner_1,
+            'banner_2_link' => $banner_2,
+        );
+
+        if ($this->first_record_exists_in_board_images()){
+            $query = 'UPDATE '
+                . $this->et_board_images_table
+                . ' SET '
+                . $this->db->sql_build_array('UPDATE', $sql_parameters)
+                . ' WHERE board_images_id = 1';
+        } else {
+            $query = 'INSERT INTO '
+                . $this->et_board_images_table . ' '
+                . $this->db->sql_build_array('INSERT', $sql_parameters);
+        }
+
+        $this->db->sql_query($query);
+    }
+
+    /**
+     * @param $social_1
+     * @param $social_2
+     * @param $social_3
+     * @param $social_4
+     */
+    public function update_board_social_links($social_1, $social_2, $social_3, $social_4) {
+        $sql_parameters = array(
+            'social_1_link' => $social_1,
+            'social_2_link' => $social_2,
+            'social_3_link' => $social_3,
+            'social_4_link' => $social_4,
         );
 
         if ($this->first_record_exists_in_board_images()){
@@ -163,38 +250,5 @@ class service
         $this->db->sql_freeresult($result);
 
         return $row_number > 0;
-    }
-
-    /**
-     * Update social icons links
-     * If a record doesn't exists it is created
-     * if it exists the record gets updated
-     *
-     * @param string $social_1 link for first social icon under News Board
-     * @param string $social_2 link for second social icon under News Board
-     * @param string $social_3 link for third social icon under News Board
-     * @param string $social_4 link for fourth social icon under News Board
-     */
-    public function update_board_social_images($social_1, $social_2, $social_3, $social_4) {
-        $sql_parameters = array(
-            'social_1'  => $social_1,
-            'social_2'  => $social_2,
-            'social_3'  => $social_3,
-            'social_4'  => $social_4,
-        );
-
-        if ($this->first_record_exists_in_board_images()){
-            $query = 'UPDATE '
-                . $this->et_board_images_table
-                . ' SET '
-                . $this->db->sql_build_array('UPDATE', $sql_parameters)
-                . ' WHERE board_images_id = 1';
-        } else {
-            $query = 'INSERT INTO '
-                . $this->et_board_images_table . ' '
-                . $this->db->sql_build_array('INSERT', $sql_parameters);
-        }
-
-        $this->db->sql_query($query);
     }
 }
