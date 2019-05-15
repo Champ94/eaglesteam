@@ -13,4 +13,4 @@ Allow php in templates option must be enabled.
 [GPLv2](../gasdz/license.txtxt)
 
 ## Notes
-I'll resume development after February 22
+I'll resume development during May
