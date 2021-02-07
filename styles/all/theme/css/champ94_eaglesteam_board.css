@@ -66,11 +66,57 @@
 }
 
 .et-banner {
-    margin: 60px 0 0 0;
+    margin: 65px 0 0 0;
+}
+
+.et-banner a {
+    margin: 0 20px;
 }
 
 .et-social {
     text-align: left;
-    margin-top: 30px;
-    margin-left: 40px;
+    display: flex;
+    align-items: center;
+    height: 80px;
+}
+
+.et-social a {
+    margin: 0 10px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) { 
+    .et-news {
+        display: none;
+    }
+
+    .et-projects {
+        width: 100%!important;
+    }
+
+    .et-banner {
+        margin: 45px 0 0 0!important;
+    }
+
+    .et-social {
+        justify-content: center;
+        height: 100px!important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .et-news {
+        display: none;
+    }
+
+    .et-projects {
+        display: none;
+    }
+
+    .et-social {
+        justify-content: center;
+    }
+
+    .et-container {
+        height: 80px!important;
+    }
 }
